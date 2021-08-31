@@ -79,7 +79,10 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 set cursorline
 set termguicolors
 
-colorscheme sonokai
-
+if strftime("%H") <= 7 || strftime("%H") >= 19
+	colorscheme xcodedark
+else
+	colorscheme xcodelight
+endif
 
 let g:python_highlight_all = 1
