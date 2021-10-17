@@ -1,49 +1,20 @@
-" initial plugin system
+" plug
 call plug#begin('~/.nvim/plugged')
-	Plug 'preservim/nerdtree' " file explorer
-	Plug 'tpope/vim-commentary' 
-	Plug 'lervag/vimtex'
-	Plug 'junegunn/vim-easy-align'
-	Plug 'itchyny/lightline.vim'
-	Plug 'nvim-lua/popup.nvim'
+	" telescope
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
-
-	" code completion
-	Plug 'ncm2/ncm2'
-    Plug 'roxma/nvim-yarp'
-
-	" Plug 'ncm2/ncm2-bufword'
-    Plug 'ncm2/ncm2-path'
 
 	" python
 	Plug 'vim-python/python-syntax'
 
-	" julia
-	Plug 'JuliaEditorSupport/julia-vim'
 
-	" theme
-	" Using Vim-Plug:
-	Plug 'jcorbin/darkula'
-	Plug 'danilo-augusto/vim-afterglow'
-	Plug 'sainnhe/sonokai'
-	Plug 'arzg/vim-colors-xcode'
-	Plug 'navarasu/onedark.nvim'
-	Plug 'sonph/onehalf', { 'rtp': 'vim' }
-	Plug 'ayu-theme/ayu-vim'
-	Plug 'tomasiser/vim-code-dark'
+	" layout
+	Plug 'itchyny/lightline.vim'
+
+	" colorscheme
 	Plug 'morhetz/gruvbox'
-	Plug 'projekt0n/github-nvim-theme'
+	Plug 'navarasu/onedark.nvim'
 call plug#end()
-
-" line numbers in nerdtee
-let NERDTreeShowLineNumbers=1
-autocmd FileType nerdtree setlocal relativenumber
-
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
 
 " split navigation
 nnoremap <C-j> <C-w>j
@@ -59,15 +30,18 @@ set showmatch
 set scrolloff=10
 set nowrap
 set colorcolumn=80
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
 
 
-" remap esc
+" insert mode remaps 
 imap jk  <Esc>
+imap ( ()<Left>
+imap [ []<Left>
+imap { {}<Left>
+inoremap ' ''<Left>
+inoremap " ""<Left>
 
-" nerdtree
-nmap fe :NERDTreeToggle<CR>
+"" editor
+set cursorline
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -75,14 +49,8 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-"" editor
-set cursorline
-set termguicolors
-
-if strftime("%H") <= 7 || strftime("%H") >= 19
-	colorscheme xcodedark
-else
-	colorscheme xcodelight
-endif
+" colorscheme
+""let g:onedark_style = 'default'
+colorscheme onedark
 
 let g:python_highlight_all = 1
