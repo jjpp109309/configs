@@ -16,6 +16,7 @@ call plug#begin('~/.nvim/plugged')
 	
 	" treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'romgrk/nvim-treesitter-context'
 
 	" functionality
 	Plug 'preservim/nerdcommenter'
@@ -35,8 +36,13 @@ call plug#begin('~/.nvim/plugged')
 	Plug 'bluz71/vim-nightfly-guicolors'
 	Plug 'doums/darcula'
 	Plug 'arzg/vim-colors-xcode'
+	Plug 'ayu-theme/ayu-vim'
+	Plug 'projekt0n/github-nvim-theme'
+	Plug 'tanvirtin/monokai.nvim'
 
 call plug#end()
+
+language en_US
 
 " lsp
 lua << EOF
@@ -123,7 +129,7 @@ set relativenumber
 set number
 set ts=4 sw=4
 set showmatch
-set scrolloff=10
+set scrolloff=5
 set nowrap
 set colorcolumn=80
 
@@ -154,8 +160,77 @@ nnoremap <leader>fs <cmd>Telescope grep_string<cr>
 "let g:vscode_style = 'ligth'
 "colorscheme vscode
 "colorscheme darcula
-let g:onedark_style = 'darker'
-colorscheme onedark
+"let g:onedark_style = 'darker'
+"colorscheme onedark
+"set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+"colorscheme github_dark
+
+lua << EOF
+local monokai = require('monokai')
+local palette = monokai.classic
+monokai.setup {
+    palette = {
+		name = 'custom',
+		base1 = '#272a30',
+		base2 = '#26292C',
+		base3 = '#2E323C',
+		base4 = '#333842',
+		base5 = '#4d5154',
+		base6 = '#9ca0a4',
+		base7 = '#b1b1b1',
+		border = '#a1b5b1',
+		brown = '#504945',
+		white = '#f8f8f0',
+		grey = '#8F908A',
+		black = '#000000',
+		pink = '#f92672',
+		green = '#a6e22e',
+		aqua = '#66d9ef',
+		yellow = '#e6db74',
+		orange = '#fd971f',
+		purple = '#ae81ff',
+		red = '#e95678',
+		diff_add = '#3d5213',
+		diff_remove = '#4a0f23',
+		diff_change = '#27406b',
+		diff_text = '#23324d'
+    },
+    custom_hlgroups = {
+		TSFunction = {
+			fg = palette.green,
+			style = 'none',
+		},
+		TSFuncBuiltin = {
+      		fg = palette.aqua,
+    	},
+		TSType = {
+      		fg = palette.green,
+    	},
+		TSKeyword = {
+			fg = palette.pink,
+			style = 'none'
+		},
+		TSKeywordFunction = {
+      		fg = palette.aqua,
+      		style = 'none',
+    	},
+		TSParameter = {
+      		fg = palette.orange,
+    	},
+		TSMethod = {
+      		fg = palette.green,
+    	},
+		TSComment = {
+      		fg = palette.base6,
+      		style = 'none',
+		}
+    }
+}
+EOF
 
 " python 
 let g:python_highlight_all = 1
