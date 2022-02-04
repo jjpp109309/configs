@@ -16,6 +16,7 @@ call plug#begin('~/.nvim/plugged')
 	
 	" treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'nvim-treesitter/playground'
 	Plug 'romgrk/nvim-treesitter-context'
 
 	" functionality
@@ -27,7 +28,10 @@ call plug#begin('~/.nvim/plugged')
 	" layout
 	Plug 'itchyny/lightline.vim'
 
+
 	" colorscheme
+	Plug 'ayu-theme/ayu-vim'
+	Plug 'sonph/onehalf', {'rtp': 'vim/'}
 	Plug 'morhetz/gruvbox'
 	Plug 'navarasu/onedark.nvim'
 	Plug 'Mofiqul/vscode.nvim'
@@ -40,7 +44,7 @@ call plug#begin('~/.nvim/plugged')
 	Plug 'projekt0n/github-nvim-theme'
 	Plug 'tanvirtin/monokai.nvim'
 	Plug 'sainnhe/gruvbox-material'
-
+	Plug 'dracula/vim'
 call plug#end()
 
 language en_US
@@ -134,6 +138,10 @@ set scrolloff=2
 set nowrap
 set colorcolumn=80
 
+" file explorer
+let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+
+
 
 " insert mode remaps 
 imap jk  <Esc>
@@ -157,12 +165,16 @@ nnoremap <leader>fs <cmd>Telescope grep_string<cr>
 " colorscheme
 set termguicolors
 set background=dark
-" Set contrast.
-" This configuration option should be placed before `colorscheme gruvbox-material`.
-" Available values: 'hard', 'medium'(default), 'soft'
-"let g:gruvbox_material_background = 'soft'
 
+let g:vscode_style = "dark"
+let g:vscode_transparency = 1
+
+let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_enable_bold = 0
 colorscheme gruvbox-material
+
+" enable backround
 
 " python 
 let g:python_highlight_all = 1
