@@ -24,10 +24,13 @@ call plug#begin('~/.nvim/plugged')
 
 	" python
 	Plug 'vim-python/python-syntax'
+	Plug 'hkupty/iron.nvim'
 
 	" layout
 	Plug 'itchyny/lightline.vim'
 
+	" git
+	Plug 'sindrets/diffview.nvim'
 
 	" colorscheme
 	Plug 'ayu-theme/ayu-vim'
@@ -43,6 +46,7 @@ call plug#begin('~/.nvim/plugged')
 	Plug 'ayu-theme/ayu-vim'
 	Plug 'projekt0n/github-nvim-theme'
 	Plug 'tanvirtin/monokai.nvim'
+	Plug 'Mofiqul/vscode.nvim'
 	Plug 'sainnhe/gruvbox-material'
 	Plug 'dracula/vim'
 call plug#end()
@@ -117,7 +121,7 @@ require'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 }
 EOF
@@ -128,6 +132,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+
 
 " layout
 set relativenumber
@@ -163,18 +168,42 @@ nnoremap <leader>gf <cmd>Telescope git_files<cr>
 nnoremap <leader>fs <cmd>Telescope grep_string<cr>
 
 " colorscheme
-set termguicolors
+"set termguicolors
 set background=dark
 
-let g:vscode_style = "dark"
-let g:vscode_transparency = 1
 
-let g:gruvbox_material_transparent_background = 1
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_enable_bold = 0
-colorscheme gruvbox-material
+lua <<EOF
 
-" enable backround
 
+	local monokai = require('monokai')
+	local palette = monokai.classic
+	monokai.setup {
+		custom_hlgroups = {
+			TSKeywordFunction = {
+				fg = palette.aqua
+			},
+			TSParameter = {
+				fg = palette.orange
+			},
+			TSMethod = {
+				fg = palette.aqua
+			},
+			TSConstant = {
+				fg = palette.white
+			},
+			TSType = {
+				fg = palette.white
+			},
+			TSNone = {
+				fg = palette.purple
+			}
+		}
+	}
+EOF
+
+hi Normal guibg=#282922 ctermbg=NONE
+hi CursorLine guibg=#333333 ctermbg=NONE
+hi ColorColumn guibg=#333333 ctermbg=NONE
+hi LineNr guibg=#282922 ctermbg=NONE
 " python 
 let g:python_highlight_all = 1
